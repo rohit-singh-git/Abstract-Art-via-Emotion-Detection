@@ -46,7 +46,7 @@ Abstract-Art-via-Emotion-Detection/
 | GPU | CUDA 12.4 compatible (recommended) |
 | Microphone | Required for live recording mode |
 
-> **Note:** PyTorch is pinned to `cu124` (CUDA 12.4). CPU execution works but image generation will be significantly slower.
+> **Note:** PyTorch is pinned to `cu124` (CUDA 12.4). CPU execution works, but image generation will be significantly slower.
 
 ---
 
@@ -82,7 +82,7 @@ uv venv --python python/python.exe
 .venv\Scripts\activate
 ```
 
-This creates a `.venv` folder inside `abstract-art-via-emotion-detection/` using the bundled portable Python 3.12.4 and activates the virtual environment just created.
+This creates a `.venv` folder inside `abstract-art-via-emotion-detection/` using the bundled portable Python 3.12.4, and activates the newly created virtual environment.
 
 ---
 
@@ -100,11 +100,18 @@ uv sync
 
 ### 4. Download the Models
 
+---
+Emotion Recognition    ← [Wav2Vec2ForSequenceClassification fine-tuned model](https://huggingface.co/Dpngtm/wav2vec2-emotion-recognition/tree/main)
+
+Image Generation       ← [Stable Diffusion pipeline (e.g., SD 1.5)](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/tree/main)
+
+---
+
 Place the model files in the following directories before running:
 
 ```
-App/Model/Emotion Recognition/    ← Wav2Vec2ForSequenceClassification fine-tuned model
-App/Model/Image Generation/       ← Stable Diffusion pipeline (e.g. SD 1.5)
+App/Model/Emotion Recognition/    ← [Wav2Vec2ForSequenceClassification fine-tuned model](https://huggingface.co/Dpngtm/wav2vec2-emotion-recognition/tree/main)
+App/Model/Image Generation/       ← [Stable Diffusion pipeline (e.g., SD 1.5)](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/tree/main)
 ```
 
 Both directories should contain the standard HuggingFace model format (`config.json`, `pytorch_model.bin` / `model.safetensors`, `tokenizer` files, etc.).
@@ -193,10 +200,10 @@ uv run python -c "import torch; print(torch.cuda.is_available(), torch.version.c
 > Confirm your GPU drivers support CUDA 12.4 and that the `cu124` wheels were installed correctly. Re-run `uv sync` if needed.
 
 **Model loading errors**
-> Ensure the `Model/Emotion Recognition/` and `Model/Image Generation/` directories exist and contain valid HuggingFace model files.
+Ensure that the `Model/Emotion Recognition/` and `Model/Image Generation/` directories exist and contain valid Hugging Face model files.
 
 **Slow image generation**
-> Without a GPU, Stable Diffusion runs on CPU which can take several minutes. A CUDA-capable GPU is strongly recommended.
+> Without a GPU, Stable Diffusion runs on CPU, which can take several minutes. A CUDA-capable GPU is strongly recommended.
 
 ---
 
