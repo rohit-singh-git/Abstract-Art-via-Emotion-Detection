@@ -19,20 +19,20 @@ A **Streamlit** web app that listens to your voice, detects your emotion using a
 ## 🗂️ Project Structure
 
 ```
-AI/
-├── Abstract-Art-via-Emotion-Detection/
-│   ├── streamlit_app.py        # Main application
-│   ├── requirements.txt        # Python dependencies
-│   ├── recordings/             # Saved microphone recordings
-│   └── results/                # Generated artwork output
-├── Model/
-│   ├── Emotion Recognition/    # Wav2Vec2 model files
-│   └── Image Generation/       # Stable Diffusion model files
+Abstract-Art-via-Emotion-Detection/
+├── App/
+│   ├── streamlit_app.py             # Main application
+│   ├── requirements.txt             # Python dependencies
+│   ├── recordings/                  # Saved microphone recordings
+│   ├── results/                     # Generated artwork output
+│   └── Model/
+│        ├── Emotion Recognition/    # Wav2Vec2 model files
+│        └── Image Generation/       # Stable Diffusion model files
 ├── python/
-│   └── python/
-│       └── python.exe          # Portable Python 3.12.4
-├── pyproject.toml              # UV project & dependency lock config
-└── uv.lock                     # Locked dependency versions
+│   └── python.exe                   # Portable Python 3.12.4
+├── pyproject.toml                   # UV project & dependency lock config
+├── README.md                        # README file
+└── uv.lock                          # Locked dependency versions
 ```
 
 ---
@@ -78,10 +78,11 @@ cd abstract-art-via-emotion-detection/
 ### 3. Create the Virtual Environment
 
 ```bash
-uv venv --python python/python/python.exe
+uv venv --python python/python.exe
+.venv\Scripts\activate
 ```
 
-This creates a `.venv` folder inside `abstract-art-via-emotion-detection/` using the bundled portable Python 3.12.4.
+This creates a `.venv` folder inside `abstract-art-via-emotion-detection/` using the bundled portable Python 3.12.4 and activates the virtual environment just created.
 
 ---
 
@@ -102,8 +103,8 @@ uv sync
 Place the model files in the following directories before running:
 
 ```
-AI/Model/Emotion Recognition/    ← Wav2Vec2ForSequenceClassification fine-tuned model
-AI/Model/Image Generation/       ← Stable Diffusion pipeline (e.g. SD 1.5)
+App/Model/Emotion Recognition/    ← Wav2Vec2ForSequenceClassification fine-tuned model
+App/Model/Image Generation/       ← Stable Diffusion pipeline (e.g. SD 1.5)
 ```
 
 Both directories should contain the standard HuggingFace model format (`config.json`, `pytorch_model.bin` / `model.safetensors`, `tokenizer` files, etc.).
@@ -148,16 +149,16 @@ After an emotion is detected, click the **🎨 Generate Art** button to produce 
 
 ```bash
 # Windows
-python\python\python.exe -m streamlit run App\streamlit_app.py
+python\python.exe -m streamlit run App\streamlit_app.py
 
 # macOS / Linux
-python/python/python -m streamlit run App/streamlit_app.py
+python/python -m streamlit run App/streamlit_app.py
 ```
 
 ### Pointing UV to the Portable Python
 
 ```bash
-uv sync --python python/python/python.exe
+uv sync --python python/python.exe
 ```
 
 ### Check Your CUDA Version
