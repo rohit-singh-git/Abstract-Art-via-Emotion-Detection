@@ -70,7 +70,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```bash
 git clone https://github.com/rohit-singh-git/abstract-art-via-emotion-detection.git
-cd abstract-art-via-emotion-detection/App
+cd abstract-art-via-emotion-detection/
 ```
 
 ---
